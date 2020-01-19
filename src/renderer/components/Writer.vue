@@ -22,6 +22,7 @@ const store = new Store();
       ckeditor: CKEditor.component
     },
     mounted(){
+      this.initMenu();
       const editor = this.$refs.editor.$el;
       editor.addEventListener('keydown', this.handleKeyDown);
       editor.addEventListener('keyup', this.handleKeyUp);
@@ -37,6 +38,28 @@ const store = new Store();
       };
     },
     methods:{
+      initMenu(){
+        const Menu = this.$electron.remote.Menu;
+        const template = [{
+            label: "Application",
+            submenu: [
+                { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
+                { type: "separator" },
+                { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+            ]}, {
+            label: "Edit",
+            submenu: [
+                { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+                { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+                { type: "separator" },
+                { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+                { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+                { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+                { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+            ]}
+        ];
+        Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+      },
       handleKeyDown(e){
         const key_down = new Audio(keyDownVoice);
         const return_sound = new Audio(returnVoice);
