@@ -24,7 +24,7 @@
     "@ckeditor/ckeditor5-build-balloon": "^16.0.0",
     "@ckeditor/ckeditor5-build-inline": "^16.0.0",
     "@ckeditor/ckeditor5-vue": "^1.0.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "electron-store": "^5.1.0",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
